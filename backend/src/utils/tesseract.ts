@@ -4,8 +4,7 @@ export const extractTextFromImage = async (buffer: Tesseract.ImageLike)=>{
     try {
         const {data: {text}} = await Tesseract.recognize(
             buffer,
-            'eng',
-          
+            'eng', 
         )
         return text;
     } catch (error) {

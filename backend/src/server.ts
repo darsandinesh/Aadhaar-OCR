@@ -11,7 +11,7 @@ dotenv.config();
 const app = express();
 
 const corsOptions = {
-    origin: process.env.FRONTEND_URL,
+    origin: '*',
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
     credentials: true,// Allows cookies and credentials to be included   
 };
@@ -29,6 +29,10 @@ const logStream = fs.createWriteStream(path.join(logDir, 'access.log'), { flags:
 app.use(morgan('combined'));
 app.use(morgan('combined', { stream: logStream }));
 
+
+app.get('/',(req,res)=>{
+    res.status(200).json('hello from server')
+})
 
 app.use('/parse-aadhar', router);
 
